@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aprende a usar tus apps paso a paso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F3F5F9; --surface:#FFFFFF; --ink:#1B2233; --muted:#576078; --line:#D8DDE8;
+  --ig:#B42A7A; --fb:#1B5FCC; --wa:#0E7A37; --gg:#9A5B00;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#12151C; --surface:#1B2030; --ink:#E8ECF4; --muted:#A3ACC2; --line:#2E3550;
+    --ig:#F06BB0; --fb:#6AA2FF; --wa:#4FCB7E; --gg:#F2B84B;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#12151C; --surface:#1B2030; --ink:#E8ECF4; --muted:#A3ACC2; --line:#2E3550;
+  --ig:#F06BB0; --fb:#6AA2FF; --wa:#4FCB7E; --gg:#F2B84B;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:1.1rem;line-height:1.55}
+body[data-aud="m"]{font-size:1.3rem;line-height:1.65}
+body[data-app="instagram"]{--accent:var(--ig)}
+body[data-app="facebook"]{--accent:var(--fb)}
+body[data-app="whatsapp"]{--accent:var(--wa)}
+body[data-app="google"]{--accent:var(--gg)}
+main{max-width:46rem;margin:0 auto;padding:2rem 1.25rem 4rem}
+h1{font-size:clamp(2rem,6vw,2.9rem);line-height:1.1;margin:0 0 .6rem;letter-spacing:-.02em}
+.lead{color:var(--muted);margin:0 0 1.5rem;max-width:34rem}
+.opts{display:grid;gap:1rem;margin-bottom:1.5rem}
+.grp p{margin:0 0 .4rem;font-weight:700}
+.seg{display:flex;gap:.5rem;flex-wrap:wrap}
+.seg button,.tabs button{font:inherit;font-weight:700;padding:.75rem 1rem;border:2px solid var(--line);
+  background:var(--surface);color:var(--ink);border-radius:.6rem;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s}
+.seg button{flex:1 1 9rem}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.6rem;margin-bottom:2rem}
+.seg button:hover,.tabs button:hover{border-color:var(--accent)}
+.seg button[aria-pressed="true"],.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+h2{font-size:1.6rem;margin:0 0 .3rem;color:var(--accent)}
+.intro{color:var(--muted);margin:0 0 1rem}
+.aud{margin:0 0 1.25rem;padding:.8rem 1rem;border-left:6px solid var(--accent);background:var(--surface);border-radius:.4rem}
+details{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--accent);
+  border-radius:.5rem;margin-bottom:.75rem}
+summary{cursor:pointer;font-weight:700;padding:1rem 1.1rem;list-style:none;display:flex;
+  justify-content:space-between;gap:1rem;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--accent);flex:none}
+details[open] summary::after{content:"–"}
+.sum{margin:0 1.1rem .8rem}
+ol{margin:0 0 .6rem;padding:0 1.1rem 0 2.6rem}
+li{margin:.55rem 0;padding-left:.3rem}
+li::marker{color:var(--accent);font-weight:700}
+.tip{margin:0 1.1rem 1rem;padding:.7rem .9rem;border-radius:.4rem;background:var(--bg);color:var(--muted);font-size:.95em}
+.vid{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 1.1rem 1.1rem}
+.vid a{color:var(--accent);font-weight:700;padding:.5rem .8rem;border:2px solid var(--accent);border-radius:.5rem;text-decoration:none}
+.vid a:hover{background:var(--accent);color:var(--bg)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(40rem 30rem at 95% -5%,color-mix(in srgb,var(--accent) 24%,transparent),transparent 70%),radial-gradient(30rem 24rem at -5% 45%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%)}
+.hero{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;margin-bottom:2rem;padding:1.5rem;border-radius:1.2rem;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 18%,var(--surface)),var(--surface))}
+.hero .lead{margin:0}
+h1 span{color:var(--accent)}
+.hero svg{width:min(9.5rem,30vw);height:auto;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px) rotate(2deg)}}
+.tabs button{display:flex;align-items:center;justify-content:center;gap:.5rem}
+.tabs svg{width:1.4em;height:1.4em;flex:none}
+.apphead{display:flex;align-items:center;gap:1rem;margin-bottom:.4rem}
+.apphead h2{margin:0}
+.badge{width:3.4rem;height:3.4rem;border-radius:1rem;display:grid;place-items:center;flex:none;background:var(--accent);color:var(--bg);transform:rotate(-5deg);box-shadow:0 6px 16px color-mix(in srgb,var(--accent) 35%,transparent)}
+.badge svg{width:2rem;height:2rem}
+ol{list-style:none;counter-reset:s;padding:0 1.1rem}
+li{counter-increment:s;display:flex;gap:.8rem;align-items:flex-start;padding-left:0}
+li::before{content:counter(s);flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:700;font-size:.95rem;display:grid;place-items:center}
+details{transition:transform .15s,box-shadow .15s}
+details:hover{transform:translateY(-2px);box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 20%,transparent)}
+.vid a::before{content:"▶ "}
+@media (prefers-reduced-motion:reduce){.hero svg{animation:none}details:hover{transform:none}}
+footer{color:var(--muted);font-size:.9rem;margin-top:2.5rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body data-app="whatsapp" data-aud="m">
+<main>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.5-4.2A8 8 0 1 1 8.2 18.6L4 20z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></symbol><symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></symbol><symbol id="i-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 14c3 0 5 1.7 5 4.5"/></symbol><symbol id="i-google" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></symbol></svg>
+  <div class="hero"><div>
+  <h1>Aprende a usar tus apps <span>paso a paso</span></h1>
+  <p class="lead">Elige para quién es la guía y cuánto detalle quieres. Cada tutorial incluye enlaces para ver videos.</p></div>
+  <svg viewBox="0 0 130 210" aria-hidden="true"><rect x="15" y="4" width="100" height="196" rx="20" style="fill:var(--ink)"/><rect x="21" y="12" width="88" height="180" rx="14" style="fill:var(--surface)"/><rect x="50" y="17" width="30" height="6" rx="3" style="fill:var(--ink)"/><rect x="28" y="40" width="34" height="34" rx="10" style="fill:var(--wa)"/><rect x="68" y="40" width="34" height="34" rx="10" style="fill:var(--ig)"/><rect x="28" y="84" width="34" height="34" rx="10" style="fill:var(--fb)"/><rect x="68" y="84" width="34" height="34" rx="10" style="fill:var(--gg)"/><use href="#i-whatsapp" x="34" y="46" width="22" height="22" style="color:var(--bg)"/><use href="#i-instagram" x="74" y="46" width="22" height="22" style="color:var(--bg)"/><use href="#i-facebook" x="34" y="90" width="22" height="22" style="color:var(--bg)"/><use href="#i-google" x="74" y="90" width="22" height="22" style="color:var(--bg)"/><rect x="28" y="132" width="74" height="10" rx="5" style="fill:var(--line)"/><rect x="28" y="150" width="52" height="10" rx="5" style="fill:var(--line)"/><rect x="2" y="164" width="58" height="28" rx="14" style="fill:var(--accent)"/><text x="31" y="182" text-anchor="middle" style="fill:var(--bg);font:700 12px 'Atkinson Hyperlegible',sans-serif">¡Hola!</text><circle cx="112" cy="30" r="9" style="fill:var(--accent)"/><path d="M112 25v10M107 30h10" style="stroke:var(--bg);stroke-width:2.5;stroke-linecap:round"/></svg></div>
+  <div class="opts">
+    <div class="grp"><p>¿Para quién es?</p><div class="seg" id="aud"></div></div>
+    <div class="grp"><p>¿Cuánto detalle quieres?</p><div class="seg" id="depth"></div></div>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Apps" id="tabs"></div>
+  <section id="panel" aria-live="polite"></section>
+  <footer>Los nombres de los menús pueden cambiar un poco según la versión de la app o tu teléfono. Los videos se abren en YouTube, en otra pestaña.</footer>
+</main>
+<script>
+var AUD=[{id:"m",n:"Personas mayores o primerizas"},{id:"j",n:"Más jóvenes o con algo de práctica"}];
+var DEP=[{id:"r",n:"Rápido (lo básico)"},{id:"d",n:"Paso a paso (con detalle)"}];
+var YT="https://www.youtube.com/results?search_query=";
+var SUF={m:" paso a paso para adultos mayores explicado lento",j:" tutorial rápido trucos"};
+var APPS=[
+{id:"whatsapp",name:"WhatsApp",intro:"Mensajes, fotos y llamadas con tus contactos.",help:"https://faq.whatsapp.com",
+ tip:{m:"Nunca compartas el código de seis dígitos que llega por SMS, ni siquiera si un familiar te lo pide por mensaje: así roban las cuentas.",j:"Silencia los grupos muy activos: abre el grupo, toca su nombre y elige “Silenciar notificaciones”."},
+ t:[
+ {t:"Enviar un mensaje",q:"cómo enviar un mensaje en WhatsApp",r:"Abre un chat, escribe y toca la flecha de enviar.",s:["Abre WhatsApp y toca el botón verde de mensaje nuevo.","Elige un contacto de la lista.","Escribe tu mensaje en la barra de abajo.","Toca la flecha de enviar."],n:"Una palomita significa enviado; dos palomitas, entregado; dos azules, leído."},
+ {t:"Crear un grupo",q:"cómo crear un grupo en WhatsApp",r:"Mensaje nuevo, “Nuevo grupo”, elige personas y ponle nombre.",s:["En la pestaña Chats, toca el botón de mensaje nuevo.","Elige “Nuevo grupo”.","Selecciona a las personas que quieres añadir y toca la flecha.","Escribe el nombre del grupo y toca “Crear”."]},
+ {t:"Enviar una foto",q:"cómo enviar fotos por WhatsApp",r:"En el chat, toca el clip o el +, elige la foto y envía.",s:["Abre el chat de la persona.","Toca el clip o el signo + junto a la barra de texto.","Elige “Galería” o “Cámara”.","Selecciona la foto, añade un comentario si quieres y toca enviar."]},
+ {t:"Hacer una videollamada",q:"cómo hacer videollamada en WhatsApp",r:"Abre el chat y toca el ícono de cámara.",s:["Abre el chat de la persona.","Toca el ícono de cámara en la parte de arriba.","Espera a que conteste y permite el acceso a cámara y micrófono si te lo pide."]}
+]},
+{id:"instagram",name:"Instagram",intro:"Comparte fotos y videos, y mira lo que publican otros.",help:"https://help.instagram.com",
+ tip:{m:"Si alguien que no conoces te escribe para pedirte dinero o un código, ignóralo y bloquéalo.",j:"Revisa quién puede etiquetarte y mencionarte en “Configuración y privacidad”."},
+ t:[
+ {t:"Publicar una foto",q:"cómo publicar una foto en Instagram",r:"Toca +, elige la foto, escribe una descripción y comparte.",s:["Toca el signo + en la parte de abajo o arriba de la pantalla.","Elige “Publicación” y selecciona una foto de tu galería.","Toca “Siguiente”, aplica un filtro si quieres y vuelve a tocar “Siguiente”.","Escribe una descripción y toca “Compartir”."]},
+ {t:"Subir una historia",q:"cómo subir una historia en Instagram",r:"Desliza a la derecha, elige la foto y toca “Tu historia”. Dura 24 horas.",s:["Desliza hacia la derecha en la pantalla de inicio, o toca tu foto de perfil con el +.","Toma una foto o elige una de tu galería.","Añade texto, stickers o música con los íconos de arriba.","Toca “Tu historia” para publicarla."]},
+ {t:"Hacer tu cuenta privada",q:"cómo poner cuenta privada en Instagram",r:"Configuración y privacidad, Privacidad de la cuenta, activar “Cuenta privada”.",s:["Ve a tu perfil y toca el menú de tres rayas.","Entra a “Configuración y privacidad”.","Toca “Privacidad de la cuenta”.","Activa “Cuenta privada”. Solo te verán quienes aceptes."]},
+ {t:"Guardar una publicación",q:"cómo guardar publicaciones en Instagram",r:"Toca el marcador debajo de la publicación; la encuentras en “Guardado”.",s:["Busca la publicación que te gusta.","Toca el ícono de marcador, abajo a la derecha de la publicación.","Para verla luego, ve a tu perfil, abre el menú y toca “Guardado”."]}
+]},
+{id:"facebook",name:"Facebook",intro:"Conecta con familia y amigos, y comparte lo que pasa en tu día.",help:"https://www.facebook.com/help",
+ tip:{m:"Desconfía de mensajes de “premios” o de amigos que piden dinero con urgencia: llama a la persona para confirmar.",j:"Activa la verificación en dos pasos en “Seguridad e inicio de sesión”."},
+ t:[
+ {t:"Publicar algo en tu perfil",q:"cómo hacer una publicación en Facebook",r:"Toca “¿Qué estás pensando?”, escribe y toca “Publicar”.",s:["Abre Facebook y toca el recuadro que dice “¿Qué estás pensando?”.","Escribe tu mensaje o toca el ícono de foto para añadir una imagen.","Revisa quién puede verlo (por ejemplo “Amigos”).","Toca “Publicar”."]},
+ {t:"Cambiar quién ve tus publicaciones",q:"cómo configurar la privacidad en Facebook",r:"Menú, Configuración, Privacidad y elige “Amigos”.",s:["Toca el menú de tres rayas y entra a “Configuración y privacidad”.","Toca “Configuración” y busca “Privacidad”.","Entra a “Quién puede ver tus publicaciones futuras”.","Elige “Amigos”, “Público” u otra opción."]},
+ {t:"Agregar a un amigo",q:"cómo agregar amigos en Facebook",r:"Busca su nombre, abre su perfil y toca “Agregar a amigos”.",s:["Escribe su nombre en la lupa de búsqueda.","Abre su perfil.","Toca “Agregar a amigos” y espera a que acepte."]},
+ {t:"Recuperar tu contraseña",q:"cómo recuperar contraseña de Facebook",r:"Toca “¿Olvidaste tu contraseña?” y sigue el código que te llegue.",s:["En la pantalla de inicio, toca “¿Olvidaste tu contraseña?”.","Escribe tu correo o tu número de teléfono.","Elige cómo recibir el código de seguridad y escríbelo en la app.","Crea una contraseña nueva que no uses en otros sitios."]}
+]},
+{id:"google",name:"Google",intro:"Buscador, correo (Gmail) y mapas en una sola cuenta.",help:"https://support.google.com",
+ tip:{m:"Google nunca te pedirá tu contraseña por correo ni por llamada.",j:"Activa la verificación en dos pasos en tu cuenta para protegerla mejor."},
+ t:[
+ {t:"Crear una cuenta de Google",q:"cómo crear una cuenta de Gmail",r:"Entra a accounts.google.com, toca “Crear cuenta” y llena tus datos.",s:["Entra a accounts.google.com y toca “Crear cuenta”.","Escribe tu nombre y elige un nombre de usuario para tu correo.","Crea una contraseña segura.","Añade un número de teléfono para poder recuperar la cuenta y termina los pasos."],n:"Anota tu contraseña en un lugar seguro y no la compartas con nadie."},
+ {t:"Enviar un correo en Gmail",q:"cómo enviar un correo en Gmail",r:"Toca “Redactar”, escribe el correo, el asunto y el mensaje, y envía.",s:["Abre Gmail y toca “Redactar”.","En “Para”, escribe el correo de la persona.","Escribe el asunto y el mensaje.","Si necesitas adjuntar un archivo, toca el clip.","Toca la flecha de enviar."]},
+ {t:"Buscar mejor en Google",q:"cómo buscar mejor en Google",r:"Usa palabras clave cortas y las pestañas Imágenes, Noticias o Videos.",s:["Escribe palabras clave, no frases largas. Por ejemplo: “receta pozole fácil”.","Pon entre comillas lo que debe aparecer tal cual.","Usa las pestañas de arriba (Imágenes, Noticias, Videos) para filtrar el tipo de resultado."]},
+ {t:"Trazar una ruta en Google Maps",q:"cómo usar Google Maps para llegar a un lugar",r:"Escribe el destino, toca “Cómo llegar” y luego “Iniciar”.",s:["Abre Maps y escribe el lugar al que quieres ir.","Toca “Cómo llegar”.","Elige cómo viajarás: auto, transporte o a pie.","Toca “Iniciar” y sigue las indicaciones."]}
+]}
+];
+function ic(i){return "<svg aria-hidden='true'><use href='#i-"+i+"'/></svg>"}
+var st={app:"whatsapp",aud:"m",depth:"d"};
+var $=function(i){return document.getElementById(i)};
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function seg(el,list,key,pressed){
+  list.forEach(function(o){
+    var b=document.createElement("button");b.type="button";b.textContent=o.n;b.dataset.id=o.id;
+    b.addEventListener("click",function(){st[key]=o.id;render()});
+    el.appendChild(b);
+  });
+}
+function render(){
+  document.body.dataset.app=st.app;document.body.dataset.aud=st.aud;
+  [["aud","aud"],["depth","depth"]].forEach(function(p){
+    Array.prototype.forEach.call($(p[0]).children,function(b){b.setAttribute("aria-pressed",b.dataset.id===st[p[1]])});
+  });
+  Array.prototype.forEach.call($("tabs").children,function(b){b.setAttribute("aria-selected",b.dataset.id===st.app)});
+  var a=APPS.filter(function(x){return x.id===st.app})[0];
+  var h="<div class='apphead'><span class='badge'>"+ic(a.id)+"</span><h2>"+esc(a.name)+"</h2></div><p class='intro'>"+esc(a.intro)+"</p><p class='aud'>"+esc(a.tip[st.aud])+"</p>";
+  a.t.forEach(function(x,i){
+    var vids=x.v&&x.v.length?x.v.map(function(u,k){return "<a href='"+u+"' target='_blank' rel='noopener'>Ver video "+(k+1)+"</a>"}).join(""):"";
+    var url=YT+encodeURIComponent(x.q+SUF[st.aud]);
+    h+="<details"+(i===0?" open":"")+"><summary>"+esc(x.t)+"</summary><p class='sum'>"+esc(x.r)+"</p>";
+    if(st.depth==="d"){
+      h+="<ol>"+x.s.map(function(s){return "<li>"+esc(s)+"</li>"}).join("")+"</ol>"+(x.n?"<p class='tip'>"+esc(x.n)+"</p>":"");
+    }
+    h+="<div class='vid'>"+vids+"<a href='"+url+"' target='_blank' rel='noopener'>Buscar videos en YouTube</a></div></details>";
+  });
+  h+="<p><a href='"+a.help+"' target='_blank' rel='noopener' style='color:var(--accent);font-weight:700'>Centro de ayuda oficial de "+esc(a.name)+"</a></p>";
+  $("panel").innerHTML=h;
+}
+seg($("aud"),AUD,"aud");seg($("depth"),DEP,"depth");
+APPS.forEach(function(a){
+  var b=document.createElement("button");b.type="button";b.innerHTML=ic(a.id)+"<span>"+a.name+"</span>";b.dataset.id=a.id;b.setAttribute("role","tab");
+  b.addEventListener("click",function(){st.app=a.id;render()});
+  $("tabs").appendChild(b);
+});
+render();
+</script>
+</body>
+</html>
